@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+        id="codeGeneratorPlugin"
+        name="CodeGeneratorPlugin"
+        version="1.0"
+        provider-name="Jelena i Ana"
+        class="com.uni.jelenaiana.main.CodeGeneratorPlugin">
+
+    <requires>
+        <api version="1.2"/>
+    </requires>
+
+    <runtime>
+       <library name="codeGeneratorPlugin.jar"/>
+       <library name="freemarker.jar"/>
+       <library name="xstream-1.3.1.jar"/>
+    </runtime>
+</plugin>
