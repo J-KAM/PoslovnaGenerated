@@ -8,22 +8,34 @@ import com.nomagic.magicdraw.core.Application;
 import com.nomagic.magicdraw.core.Project;
 import com.nomagic.magicdraw.ui.dialogs.MDDialogParentProvider;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Package;
-import com.uni.jelenaiana.analyzer.ModelGenerator;
+import com.uni.jelenaiana.analyzer.AnalyzeException;
+import com.uni.jelenaiana.analyzer.MPModelAnalyzer;
+import com.uni.jelenaiana.generator.mpmodel.MPModel;
 
 public class ActionEventHandler {
 	
-	private ModelGenerator gen = new ModelGenerator();
+	private MPModelAnalyzer modelAnalyzer = new MPModelAnalyzer();
 
 	public void handle(ActionEvent evt) {
 		try {
 			Project project = getProject();
 			Package pack = getPackage(project);
-			gen.generate(pack);
+			
+			processMPModel(pack);
+			System.out.println("Gotova analiza modela");
 			
 		} catch (ConfigurationError e) {
 			JOptionPane.showMessageDialog(MDDialogParentProvider.getProvider().getDialogOwner(),
 					e.getMessage());
+		} catch (AnalyzeException e) {
+			System.out.println(e.getMessage());
 		}
+	}
+	
+	private void processMPModel(Package pack) throws AnalyzeException, ConfigurationError {
+		MPModel.getInstance().getClasses().clear();
+		MPModel.getInstance().getEnumerations().clear();
+		modelAnalyzer.processModel(pack);
 	}
 	
 	private Project getProject() throws ConfigurationError {

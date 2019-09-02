@@ -29,7 +29,7 @@
 		<link>
 			<name>MAGIC_DRAW_INSTALL_DIRECTORY</name>
 			<type>2</type>
-			<location>C:/jdk/MagicDrawDemo</location>
+			<location>C:/MagicDrawDemo</location>
 		</link>
 	</linkedResources>
 </projectDescription>
